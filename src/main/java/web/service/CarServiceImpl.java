@@ -1,14 +1,15 @@
 package web.service;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 import web.model.Car;
+
+import java.util.ArrayList;
 import java.util.List;
 
-@Service
+@Repository
 public class CarServiceImpl implements CarService {
 
-    List<Car> carList;
-
+    private List<Car> carList;
 
     public CarServiceImpl(List<Car> carList) {
         this.carList = carList;
@@ -21,6 +22,6 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public List<Car> getCars(int value) {
-        return (value > 5 || value < 1) ? carList : carList.subList(0, value);
+        return (value > 5 || value < 1) ? carList : new ArrayList<>(carList.subList(0, value));
     }
 }
